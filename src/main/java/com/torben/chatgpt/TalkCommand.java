@@ -23,7 +23,7 @@ public class TalkCommand implements CommandExecutor, Listener {
 
     String apiKey = main.getConfig().getString("apikey");
     public TalkCommand(Main main) {
-        this.main = main;
+        apiKey = main.getConfig().getString(“apikey”);
     }
     private OpenAiService service = new OpenAiService(apiKey, 0);
     private HashMap<UUID, StringBuilder> conversations = new HashMap<>();
