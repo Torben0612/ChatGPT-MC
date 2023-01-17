@@ -15,15 +15,13 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 public class TalkCommand implements CommandExecutor, Listener {
 
-    private Main main;
+    private String apiKey;
 
-    String apiKey = main.getConfig().getString("apikey");
     public TalkCommand(Main main) {
-        apiKey = main.getConfig().getString(“apikey”);
+        apiKey = main.getConfig().getString("apikey");
     }
     private OpenAiService service = new OpenAiService(apiKey, 0);
     private HashMap<UUID, StringBuilder> conversations = new HashMap<>();
@@ -58,7 +56,7 @@ public class TalkCommand implements CommandExecutor, Listener {
 
             player.sendMessage("You: " + e.getMessage());
 
-            Bukkit.getScheduler().runTaskAsynchronously(main, () -> player.sendMessage("AI: " + getResponse(player.getUniqueId(), e.getMessage())));
+            Bukkit.getScheduler().runTaskAsynchronously(new Main(), () -> player.sendMessage("AI: " + getResponse(player.getUniqueId(), e.getMessage())));
         }
     }
 
