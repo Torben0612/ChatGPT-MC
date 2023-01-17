@@ -1,0 +1,6 @@
+name: Chatgpt
+version: '1.0-SNAPSHOT'
+main: com.torben.chatgpt.Main
+api-version: 1.16
+commands:
+  talk:
